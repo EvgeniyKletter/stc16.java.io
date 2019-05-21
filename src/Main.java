@@ -26,41 +26,53 @@ public class Main {
     public static void main(String[] args) {
 // Задание 1.
 
-        List list = new ArrayList();
-        LinkedList result = new LinkedList();
 //        Создали файл со сторокой ...
+//        File file = new File("CreatFile.txt");
+//                try {
+//            if (file.createNewFile()) {
+//                try {
+//                    FileWriter fw = new FileWriter("CreatFile.txt");
+//                    fw.write("New text for file");
+//                    fw.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        TreeSet treeSet = new TreeSet();
+        String[] dataString = new String[]{};
         try {
-            FileWriter = new File("CreatFile.txt");
-            while ((data = fileReader.read())!= -1){
-               System.out.print((char) data);
+
+
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("CreatFile.txt"));
+
+            dataString = bufferedReader.readLine().toLowerCase().replaceAll(" ", ",").split(",");
+
+            for (int i = 0; i < (dataString.length -1) ; i++) {
+                treeSet.add(dataString[i]);
             }
+            bufferedReader.close();
+            System.out.println(treeSet);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        File newFile = new File("Result.txt");
         try {
-            List arrayList = new ArrayList();
+            newFile.createNewFile();
+            FileWriter fw = new FileWriter("Result.txt");
+            treeSet.first();
+            for (int i = 0; i < (dataString.length -1) ; i++) {
+                fw.write(dataString[i] + " ");
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("CreatFile.txt"));
-            String dataString;
-            dataString = bufferedReader.readLine().toLowerCase();
-
-            System.out.print(dataString);
-            System.out.println();
-            int z = 0;
-            for ( int i= 0; i == dataString.length(); i++){
-                if (arrayList.get(i) != " " || arrayList.get(i) != "." || arrayList.get(i) != "," || arrayList.get(i) != " "  ) {
-                    result.add(z,arrayList.get(i));
-
-                } else {
-//                    System.out.println(result.get(z));
-                    z = z++;
-                }
             }
-            System.out.println(result);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

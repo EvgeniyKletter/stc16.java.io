@@ -1,0 +1,1 @@
+I created the CreatFile txt file using, the FileOutputStream method, files. This is SPARTA.
