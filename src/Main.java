@@ -25,53 +25,45 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 // Задание 1.
-
-//        Создали файл со сторокой ...
-//        File file = new File("CreatFile.txt");
-//                try {
-//            if (file.createNewFile()) {
-//                try {
-//                    FileWriter fw = new FileWriter("CreatFile.txt");
-//                    fw.write("New text for file");
-//                    fw.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         TreeSet treeSet = new TreeSet();
         String[] dataString = new String[]{};
+        File file = new File("CreatFile.txt");
+//Создали Source файл со сторокой
+
         try {
+            if (file.createNewFile()) {
+                try {
+                    FileWriter fw = new FileWriter("CreatFile.txt");
+                    fw.write("I created the CreatFile txt file using, the FileOutputStream method.");
+                    fw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+//Полученные данные обрабатываем по необходимым условиям...
+        try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("CreatFile.txt"));
-
             dataString = bufferedReader.readLine().toLowerCase().replaceAll(" ", ",").split(",");
-
             for (int i = 0; i < (dataString.length -1) ; i++) {
                 treeSet.add(dataString[i]);
             }
             bufferedReader.close();
-            System.out.println(treeSet);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        File newFile = new File("Result.txt");
+//Создаём Result файл и загружаем результат
         try {
-            newFile.createNewFile();
+            file.createNewFile();
             FileWriter fw = new FileWriter("Result.txt");
-            treeSet.first();
-            for (int i = 0; i < (dataString.length -1) ; i++) {
-                fw.write(dataString[i] + " ");
-
-            }
-
+            fw.write(treeSet.toString());
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
