@@ -48,7 +48,7 @@ public class Main {
 //Полученные данные обрабатываем по необходимым условиям...
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("CreatFile.txt"));
-            dataString = bufferedReader.readLine().toLowerCase().replaceAll(" ", ",").split(",");
+            dataString = bufferedReader.readLine().toLowerCase().split(" ");
             for (int i = 0; i < (dataString.length -1) ; i++) {
                 treeSet.add(dataString[i]);
             }
